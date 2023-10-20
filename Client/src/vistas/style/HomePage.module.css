@@ -1,0 +1,10 @@
+.container {
+    background-color: blanchedalmond;
+    display: grid;
+    grid-template-areas: "main cards cards";
+}
+
+
+
+.container .main { grid-area: main ; background-color: rgb(123, 242, 242)  ; }
+.container .cards { grid-area: cards ; background-color: rgb(85, 154, 219)  ;  }
