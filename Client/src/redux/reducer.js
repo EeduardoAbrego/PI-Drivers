@@ -40,16 +40,16 @@ const reducer = (state = initialState , action ) => {
             }  
             
         case FILTER:
-            const newAllDrivers = [...state.allDrivers].map((driver) => ({
+            /*const newAllDrivers = [...state.allDrivers].map((driver) => ({
                 ...driver,
                 dob: driver.dob.split('-')[0],
-              }));
+              }));*/
               
-              const filterDate = newAllDrivers.sort((a, b) => {
+              const filterDate = [...state.allDrivers].sort((a, b) => {
                 if (action.payload === "Menor a Mayor") {
-                  return Number(a.dob) - Number(b.dob);
+                  return Number(a.dobsplit('-')[0]) - Number(b.dob.split('-')[0]);
                 } else {
-                  return Number(b.dob) - Number(a.dob);
+                  return Number(b.dob.split('-')[0]) - Number(a.dob.split('-')[0]);
                 }
               });
               

@@ -17,10 +17,10 @@ useEffect( () => {
  
 const{driver ={characterer[0]*/
 const { id } = useParams();
-const driversAll = useSelector(state => state.allDrivers);
+const driversAll = useSelector((state) => state.allDrivers);
 
 
-const driver = driversAll.find(char => char.id === Number(id));
+const driver = driversAll.find(char => char.id === id);
 
 
 useEffect(() => {
@@ -28,7 +28,7 @@ useEffect(() => {
 },[id,driversAll])
 
 console.log(driversAll)
-console.log(Number(id))
+console.log(id)
 
 console.log("hola")
 
@@ -39,13 +39,13 @@ return (
     <div>
          
 
-            <h1> {driver.name.forename} </h1>
-             <h2> {driver.name.surname}</h2>
+            <h1> {driver.forename} </h1>
+             <h2> {driver.surname}</h2>
              <h2>{driver.teams}</h2>
              <p> {driver.description} </p>
              <p> {driver.dob}</p>
              <p> {driver.nationality} </p>
-            <img src= {driver.image.url} alt={"characterer"} />
+            <img src= {driver.image} alt={"characterer"} />
     </div>
 )
 
