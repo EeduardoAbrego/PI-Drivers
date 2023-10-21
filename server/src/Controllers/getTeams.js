@@ -25,15 +25,17 @@ const getTeams = async (req, res) => {
         if(!teamsFilt.includes(element)) teamsFilt.push( element);
       }
       
+      
+      console.log(teamsFilt.length)
       const dbTeam = teamsFilt.map((team) => {
         return {team: team}
       })
     
        await Team.bulkCreate(dbTeam)
 
-     const teamsBd = await Team.findAll()
+     
 
-      return res.status(200).send(teamsBd)
+      return res.status(200).send(teamsFilt)
      
     } catch (error) {
         res.status(500).json({error: error.message})
