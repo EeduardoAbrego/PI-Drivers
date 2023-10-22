@@ -3,8 +3,7 @@ import { Link } from "react-router-dom"
 
 const Card = ({element}) => {
 
-const {forename, surname, image, id , teams} = element
-
+const {forename , surname,  image, id , teams} = element
 
     return (
         <div className={style.card}>

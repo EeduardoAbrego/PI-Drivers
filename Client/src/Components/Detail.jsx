@@ -17,10 +17,10 @@ useEffect( () => {
  
 const{driver ={characterer[0]*/
 const { id } = useParams();
-const driversAll = useSelector((state) => state.allDrivers);
+const driversAll = useSelector(state => state.allDrivers);
 
 
-const driver = driversAll.find(char => char.id === id);
+const driver = driversAll.find(char => char.id === Number(id));
 
 
 useEffect(() => {
@@ -28,7 +28,7 @@ useEffect(() => {
 },[id,driversAll])
 
 console.log(driversAll)
-console.log(id)
+console.log(Number(id))
 
 console.log("hola")
 

@@ -29,9 +29,9 @@ const reducer = (state = initialState , action ) => {
         case ORDER: 
         const driverOrder = [...state.allDrivers].sort((a,b)=> {
             if(action.payload === "Ascendente") {
-                return a.name.forename > b.name.forename ? 1 : -1
+                return a.forename > b.forename ? 1 : -1
             } else {
-                return a.name.forename < b.name.forename ? 1 : -1
+                return a.forename < b.forename ? 1 : -1
             }
             });
             return {
@@ -47,7 +47,7 @@ const reducer = (state = initialState , action ) => {
               
               const filterDate = [...state.allDrivers].sort((a, b) => {
                 if (action.payload === "Menor a Mayor") {
-                  return Number(a.dobsplit('-')[0]) - Number(b.dob.split('-')[0]);
+                  return Number(a.dob.split('-')[0]) - Number(b.dob.split('-')[0]);
                 } else {
                   return Number(b.dob.split('-')[0]) - Number(a.dob.split('-')[0]);
                 }
