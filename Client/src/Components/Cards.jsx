@@ -29,7 +29,7 @@ const Cards = ({allDrivers, driverName}) => {
       {driverName && driverName.map((element) => ( <Card  element={element} /> ))}
       
         { arrayDrivers.map((element) => (
-          <Card  element={element} />
+          <Card key={element.Id} element={element} />
         ))}
         <div className={style.paginado} >
          <button onClick={handlerAnt}>Anterior</button>

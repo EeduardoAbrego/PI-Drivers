@@ -48,7 +48,7 @@ console.log(team)
           </div>         
           <div>
 
-            <select onChange={handleOrder} > 
+            <select onChange={handleOrder}  > 
             <option selected disabled >Orden Alfabetico</option>
             <option value="Ascendente">Ascendente</option>          
             <option value="Desendente">Desendente</option>

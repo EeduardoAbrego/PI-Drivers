@@ -25,17 +25,22 @@ const getTeams = async (req, res) => {
         if(!teamsFilt.includes(element)) teamsFilt.push( element);
       }
       
+      const teamsOrder = teamsFilt.sort((a,b)=> a > b ? 1 : -1)
       
-      console.log(teamsFilt.length)
-      const dbTeam = teamsFilt.map((team) => {
+     const dbTeam = teamsOrder.map((team) => {
         return {team: team}
       })
-    
-       await Team.bulkCreate(dbTeam)
+      
+      const dbTeams = await Team.findAll();
+      
+      if (dbTeams.length === 0) {
+        await Team.bulkCreate(dbTeam);
+      }
 
-     
 
-      return res.status(200).send(teamsFilt)
+      console.log(dbTeams)
+      
+     return res.status(200).send(teamsOrder)
      
     } catch (error) {
         res.status(500).json({error: error.message})

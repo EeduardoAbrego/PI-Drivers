@@ -1,10 +1,11 @@
-import { GET_DRIVERS, GET_NAME , GET_TEAM , ORDER , FILTER} from "./actions";
+import { GET_DRIVERS, GET_NAME , GET_TEAM , ORDER , FILTER, GET_ALL_TEAMS} from "./actions";
 
 
 let initialState = {
     allDrivers: [],
     driverName: [],
     driversTeam:[],
+    allTeams:[]
 }
 
 const reducer = (state = initialState , action ) => {
@@ -58,7 +59,11 @@ const reducer = (state = initialState , action ) => {
                 allDrivers: filterDate,
               };
 
-
+            case GET_ALL_TEAMS :
+              return  {
+                ...state,
+                allTeams: action.payload,
+              };
 
 
             default:

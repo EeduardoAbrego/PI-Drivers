@@ -3,11 +3,12 @@ import { Link } from "react-router-dom"
 
 const Card = ({element}) => {
 
-const {forename , surname,  image, id , teams} = element
+const {forename , surname,  image, Id , teams, } = element
 
     return (
         <div className={style.card}>
-           <Link to={`/detail/${id}`} >
+        <p>{Id }</p>
+           <Link to={`/detail/${Id}`} >
           <span>{forename}</span>
           </Link>
           <span> {surname} </span>

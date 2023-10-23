@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios"
+import { useSelector, useDispatch } from "react-redux"; 
+import { getAllTeams } from "../redux/actions";
 
 
 const Form = ( ) => {
 
+  const dispatch = useDispatch()
+  const allTeams = useSelector(state => state.allTeams)
    
   const [driverData, setDriverData] = useState({
     forename: "hola",
@@ -12,7 +16,7 @@ const Form = ( ) => {
     nationality: "arg",
    description: "holahola",
      dob:"25-8-25",
-     teams:"48d852af-db85-4443-bb7c-994100b22f26"
+     teams:"hola"
    }); 
 
    const [errors, setErrors] = useState({
@@ -25,17 +29,8 @@ const Form = ( ) => {
       teams: "",
    });
 
-
-   const [allTeams, setAllTeams] = useState([])
-
-
-
-   useEffect(() => {
-    const asyncFn = async () => { 
-        const {data} = await  axios("http://localhost:3001/teams")
-         setAllTeams(data) 
-       };
-    asyncFn();
+  useEffect(() => {
+    dispatch(getAllTeams())
   }, []);
 
    const createDriver = async (driver) => {

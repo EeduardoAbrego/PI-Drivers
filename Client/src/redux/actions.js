@@ -5,7 +5,7 @@ export const GET_NAME = "GET_NAME"
 export const GET_TEAM = "GET_TEAM"
 export const ORDER  = "ORDER"
 export const FILTER = "FILTER"
-
+export const GET_ALL_TEAMS = "GET_ALL_TEAMS"
 
 
 export const getDrivers = () => {
@@ -59,3 +59,16 @@ export const filterDrivers = (value) => {
         })
         }
 }
+
+export const getAllTeams = () => {
+    return async (dispatch) => {
+        const {data} = await axios(`http://localhost:3001/teams`);
+        console.log(data)
+        return dispatch({
+            type: GET_ALL_TEAMS,
+            payload: data,
+        })
+        }
+}
+
+

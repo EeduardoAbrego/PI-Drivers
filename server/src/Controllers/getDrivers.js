@@ -1,5 +1,5 @@
 const axios = require ("axios");
-const {Driver} = require("../db")
+const {Driver, Team} = require("../db")
 
 const getDrivers = async (req, res) => {
 try {
@@ -7,7 +7,7 @@ const {name} = req.query
 const  {data} = await axios.get("http://localhost:5000/drivers")
 const drivers =  data.map((driver) => {
     return {
-        id: driver.id,
+        Id: driver.id,
         forename: driver.name.forename,
         surname: driver.name.surname,
         description: driver.description,
@@ -25,10 +25,33 @@ if(data){
     
     return res.status(200).send(driverName)
 }
-const driv = await Driver.findAll()
+const driv = await Driver.findAll({
+    include: {
+      model: Team,
+      attributes: ["team"],
+      through: {
+        attributes: [],
+      },
+    },
+  }
+)
 console.log(driv)
+const driDb = driv.map(driv => {
+  let team = driv.Teams.map(obj => obj.team)
+  let teams = team.join(", ")
+  return{
+    Id: driv.Id,
+    forename: driv.forename,
+    surname: driv.surname,
+    description: driv.description,
+    image: driv.image,
+    nationality: driv.nationality,
+    dob: driv.dob,
+    teams,
+  }
+} )
 
-const allDrivers = [...driv, ...drivers]
+const allDrivers = [...driDb, ...drivers]
   return res.status(200).send(allDrivers)
 }
 res.status(200).send("error")

@@ -6,9 +6,23 @@ try {
     console.log(req.body)
     const { forename, surname, image, nationality, description, dob, teams } = req.body
 
-    const newDriver = await Driver.create({ forename, surname, image, nationality, description, dob}) 
+    const teamsDriv = Array.isArray(teams) ? teams : [teams];
 
-    await newDriver.addTeam(teams);  
+    
+    const teamsAll = await Team.findAll({ where: { team: teamsDriv } });
+
+    const newDriver = await Driver.create({ forename, surname, image, nationality, description, dob}) 
+   
+    
+    await newDriver.addTeam(teamsAll);  
+
+    
+    
+    newDriver.teams = teamsAll.map((team) => team.team);
+    
+
+ 
+
     
     return res.status(201).json(newDriver);
 
