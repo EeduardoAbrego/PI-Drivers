@@ -1,11 +1,16 @@
 import Form from "../Components/Form"
+import NavBar from "../Components/NavBar"
 
 
 
 const FormPage = () => {
 
 return (
-    <Form />
+    <div>
+        <NavBar/>
+        <Form />
+
+    </div>
 )
 }
 

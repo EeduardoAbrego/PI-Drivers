@@ -5,13 +5,14 @@ const getDrivers = async (req, res) => {
 try {
 const {name} = req.query 
 const  {data} = await axios.get("http://localhost:5000/drivers")
+const imageUrl = "https://images.unsplash.com/photo-1552255472-3330e5928013?auto=format&fit=crop&q=80&w=1964&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 const drivers =  data.map((driver) => {
     return {
         Id: driver.id,
         forename: driver.name.forename,
         surname: driver.name.surname,
         description: driver.description,
-        image: driver.image.url,
+        image: driver.image && driver.image.url ? driver.image.url : imageUrl,
         nationality: driver.nationality,
         dob: driver.dob,
         teams: driver.teams,
@@ -44,7 +45,7 @@ const driDb = driv.map(driv => {
     forename: driv.forename,
     surname: driv.surname,
     description: driv.description,
-    image: driv.image,
+    image: driv.image ? driv.image : imageUrl,
     nationality: driv.nationality,
     dob: driv.dob,
     teams,

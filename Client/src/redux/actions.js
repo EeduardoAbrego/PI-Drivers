@@ -6,13 +6,12 @@ export const GET_TEAM = "GET_TEAM"
 export const ORDER  = "ORDER"
 export const FILTER = "FILTER"
 export const GET_ALL_TEAMS = "GET_ALL_TEAMS"
-
+export const ORIGIN = "ORIGIN"
+export const RELOAD = "RELOAD"
 
 export const getDrivers = () => {
-    console.log("holis")
     return async (dispatch) => {
     const {data} = await axios("http://localhost:3001/drivers");
-    console.log(data)
     return dispatch({
         type: GET_DRIVERS,
         payload: data,
@@ -71,4 +70,19 @@ export const getAllTeams = () => {
         }
 }
 
+export const filterOrigin = (value) => {
+    return  (dispatch) => {
+        return dispatch({
+            type: ORIGIN,
+            payload: value,
+        })
+        }
+}
 
+export const reloadHome = () => {
+    return  (dispatch) => {
+        return dispatch({
+            type: RELOAD 
+        })
+        }
+}

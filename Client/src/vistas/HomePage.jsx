@@ -4,6 +4,7 @@ import  {getDrivers} from "../redux/actions";
 import style from "./style/HomePage.module.css"
 import Menu from "../Components/Menu"
 import Cards from "../Components/Cards"
+import NavBar from "../Components/NavBar";
 
 
 const HomePage = () => {
@@ -14,20 +15,25 @@ const allDrivers = useSelector((state) => state.allDrivers);
 useEffect(() => {
     dispatch(getDrivers());
     
-}, []);
+}, [dispatch]);
 
 
 return (
-   <>
+   <div >
    <div className={style.container }>
+    <div className={style.nav}> 
+       <NavBar/>
+    </div>
       <div className={style.main} > 
       <Menu allDrivers={allDrivers} /> 
       </div>
+      
       <div className={style.cards }>
       <Cards allDrivers={allDrivers}  /> 
-         </div>
+    </div>
+      
      </div>
-     </>
+     </div>
 )
 }
 

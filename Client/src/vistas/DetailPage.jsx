@@ -1,5 +1,6 @@
 import Detail from "../Components/Detail"
-import { useSelector } from "react-redux"
+
+import NavBar from "../Components/NavBar"
 
 
 const DetailPage = () => {
@@ -7,6 +8,7 @@ const DetailPage = () => {
     
     return (
    <div>
+    <NavBar/>
     <Detail />
    </div>
 

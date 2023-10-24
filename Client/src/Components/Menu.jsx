@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getTeamDriver , filterOrder, filterDrivers} from "../redux/actions";
+import { getTeamDriver , filterOrder, filterDrivers , filterOrigin} from "../redux/actions";
 import {  useDispatch } from "react-redux";
 
 
@@ -9,7 +9,7 @@ const Menu = ({allDrivers}) => {
     const dispatch = useDispatch()
      
     const [team,setTeam] = useState("");
-    const [aux , setAux] = useState(false);
+    
 
     const handleChange = (e) => {
           setTeam(e.target.value)
@@ -23,15 +23,17 @@ const Menu = ({allDrivers}) => {
 
     const handleOrder = (e) => {
         const {value} = e.target;
-        setAux(!aux)
-        dispatch(filterOrder(value))
-       
-   };
+         dispatch(filterOrder(value))
+    };
 
    const handleFilter = (e) => {
        const {value} = e.target;
-       setAux(!aux)
        dispatch(filterDrivers(value));
+    };
+
+    const handleOrigin = (e) => {
+      const {value} = e.target;
+      dispatch(filterOrigin(value));
    };
 
   const numAllDrivers = allDrivers.length
@@ -58,7 +60,8 @@ console.log(team)
             <option value="Mayor a Menor">Mayor a Menor</option>          
             <option value="Menor a Mayor">Menor a Mayor</option>
             </select>
-            <select >
+            <select  onChange={handleOrigin} >
+            <option selected disabled >API/DB</option>
             <option value="API">API</option>          
             <option value="DB">DB</option>
             </select>

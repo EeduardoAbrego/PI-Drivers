@@ -10,44 +10,54 @@ const Form = ( ) => {
   const allTeams = useSelector(state => state.allTeams)
    
   const [driverData, setDriverData] = useState({
-    forename: "hola",
-    surname: "soy",
+    forename: "",
+    surname: "",
      image: "",
-    nationality: "arg",
-   description: "holahola",
-     dob:"25-8-25",
-     teams:"hola"
+    nationality: "",
+   description: "",
+     dob:"",
+     teams:""
    }); 
 
    const [errors, setErrors] = useState({
-      forename: ""  ,
-      surname: "",
-      nationality: "",
-      image: "" ,
+      forename: "",
       dob: "",
-      description: "",
-      teams: "",
-   });
+    });
 
   useEffect(() => {
     dispatch(getAllTeams())
-  }, []);
+  }, [dispatch]);
 
-   const createDriver = async (driver) => {
+ const validations = (value,proper, setErrors, errors) => {
+  if (proper === "forename") {
+    const valName = /^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$/;
+    const isValid = valName.test(value);
+    setErrors({ ...errors, forename: isValid ? "Nombre Válido" : "Nombre Inválido" });
+  } else if (proper === "dob") {
+    const valDate = /^\d{4}\-\d{2}\-\d{2}$/;
+    const isValid = valDate.test(value);
+    setErrors({ ...errors, dob: isValid ? "Fecha Válida" : "Fecha Inválida" });
+  }
+}
+
+  const handleChange = (e) => {
+    const proper = e.target.name;
+    const value = e.target.value;
+    setDriverData({ ...driverData, [proper]: value });
+    validations(value, proper, setErrors, errors)
+  };
+ 
+  
+  const createDriver = async (driver) => {
     await axios.post("http://localhost:3001/drivers", driver)
     alert("usuario creado")
    }
 
 
 
-   const handleChange = (e) => {
-     const proper = e.target.name;
-     const value = e.target.value;
-     setDriverData({...driverData, [proper]:value });
-    }
+   
      
   const handleSubmit = (event) => {
-
       event.preventDefault();
       createDriver(driverData);
     }
@@ -56,7 +66,8 @@ const Form = ( ) => {
         const {value} = e.target;
         setDriverData({...driverData, teams:[...driverData.teams  ,value] })
      }
-    return (
+    
+     return (
       <div className="" >
         <form onSubmit={handleSubmit} >
 
@@ -70,27 +81,26 @@ const Form = ( ) => {
            <div>
            <label htmlFor="Apellido" >Apellido </label>
               <input type="text" name="surname" value={driverData.surname} onChange={ handleChange} />
-              <p>{errors.surname} </p>
-
+             
             </div>
 
             <div>
               <label htmlFor="Nationality" >Nationality </label>
               <input type="text" name="nationality" value={driverData.nationality} onChange={ handleChange} />
-              <p>{errors.nationality} </p>
+              
 
             </div>
 
             <div>
               <label htmlFor="Image" >Image </label>
-              <input type="text" name="image" value={driverData.image} onChange={ handleChange} />
-              <p>{errors.image} </p>
+              <input type="text" name="image" value={driverData.image} onChange={ handleChange} placeholder="url" />
+              
 
             </div>
 
             <div>
               <label htmlFor="Date of Birthday" > Date of Birthday </label>
-              <input type="text" name="dob" value={driverData.dob} onChange={ handleChange} />
+              <input type="text" name="dob" value={driverData.dob} onChange={ handleChange} placeholder="yyyy-mm-dd" />
               <p>{errors.dob} </p>
 
             </div>
@@ -98,11 +108,11 @@ const Form = ( ) => {
             <div>
               <label htmlFor="Description" > Description </label>
               <input type="text" name="description" value={driverData.description} onChange={ handleChange} />
-              <p>{errors.description} </p>
+              
 
             </div>
 
-            <div>
+           
               <div>
                 <label htmlFor="Teams" > Teams </label>
                 <input type="text" name="teams" value={driverData.teams} onChange={ handleChange}  />
@@ -114,11 +124,8 @@ const Form = ( ) => {
                   </select>
 
               </div>
-              <p>{errors.teams} </p>
-
-            </div>
-
-           <div>
+              
+              <div>
               <button type="submit" > Send </button>
             </div>
             

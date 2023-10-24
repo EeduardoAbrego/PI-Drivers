@@ -2,15 +2,21 @@
    
     display: flex;
     flex-direction: column;
-    background-color: aqua;
-    border: 1px soid gray;
     border-radius: 5px;
     padding: 25px;
     cursor: pointer;
     -moz-osx-font-smoothing: grascale;  
     backface-visibility: hidden;
-    transform: translateZ(0);
-    transition: trasnform 0.25s ease-out;
+    background: rgba(255, 255, 255, .3) ;
+    -webkit-backdrop-filter: blur(5px);
+ backdrop-filter: blur(5px);
+ border : 1.5px solid rgba(209, 213, 219, 0.3)
+}
+
+.card h3,
+.card h4 {
+  display: inline; 
+  margin: 0; 
 }
 
 .card {

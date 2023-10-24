@@ -1,10 +1,25 @@
 .container {
-    background-color: blanchedalmond;
+   
+   background-image: url("https://cdn.motor1.com/images/mgl/P33KbK/s2/audi-f1-2026.webp");
+   background-position: 100% 0%;
     display: grid;
-    grid-template-areas: "main cards cards";
+    grid-template-areas: 
+    "nav nav nav "
+    "main cards cards";
 }
 
 
+.container .nav {grid-area: nav ;}
+.container .main { grid-area: main ;  }
+.container .cards { grid-area: cards ; }
 
-.container .main { grid-area: main ; background-color: rgb(123, 242, 242)  ; }
-.container .cards { grid-area: cards ; background-color: rgb(85, 154, 219)  ;  }
+@font-face {
+    font-family: 'cards';
+    src: url('../../font/bebas_neue/BebasNeue-Regular.ttf') format('truetype');
+  }
+
+.cards {
+    font-family: "cards" ; 
+   max-height: 531px; /* Establece la altura máxima deseada */
+    overflow-y: scroll; /* Habilita la barra de desplazamiento vertical cuando el contenido supera la altura máxima */
+  }

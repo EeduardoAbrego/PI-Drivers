@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Card from "./Card"
 import style from "./style/Cards.module.css"
 
@@ -20,6 +20,9 @@ const Cards = ({allDrivers, driverName}) => {
    if (numPag !== 57) setNumPag(numPag + 1) ;
   }
   
+  const handlerHome = () => {
+    setNumPag(1)
+  }
   
  
     return (
@@ -32,7 +35,8 @@ const Cards = ({allDrivers, driverName}) => {
           <Card key={element.Id} element={element} />
         ))}
         <div className={style.paginado} >
-         <button onClick={handlerAnt}>Anterior</button>
+        <button onClick={handlerHome}>Inicio</button>
+         { numPag > 1 && <button onClick={handlerAnt}>Anterior</button>}
          <p>Página {numPag}</p>
          <button onClick={handlerNext}>Siguiente</button>
          </div>
