@@ -1,18 +1,14 @@
-import Detail from "../Components/Detail"
-
-import NavBar from "../Components/NavBar"
-
+import Detail from "../Components/Detail";
+import NavBar from "../Components/NavBar";
+import style from "./style/DetailPage.module.css"
 
 const DetailPage = () => {
+  return (
+    <div className={style.container}>
+      <NavBar />
+      <Detail />
+    </div>
+  );
+};
 
-    
-    return (
-   <div>
-    <NavBar/>
-    <Detail />
-   </div>
-
-    )
-}
-
-export default DetailPage 
+export default DetailPage;

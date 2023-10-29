@@ -1,6 +1,9 @@
+
+
 .cards {
-   
-    border: 3px solid black;
+  
+   width: 750px;
+    
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -8,8 +11,21 @@
     padding: 15px;
 }
 
-.paginado {
+.paginado   {
     display: flex;
     justify-content: center;
     justify-items: center;
-}
+    
+    }
+    @font-face {
+        font-family: 'options';
+        src: url('../../font/bebas_neue/BebasNeue-Regular.ttf') format('truetype');
+      }
+ 
+      .styleButton1  {
+        font-size: 20px;
+        background-color: brown; 
+        font-family: "options";
+        cursor: pointer;
+      }
+    

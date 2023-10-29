@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  height: 81vh;
+  overflow: hidden;
+}
+
+.info {
+  flex: 1; /* Ocupa todo el espacio disponible en el lado izquierdo */
+  padding: 20px;
+}
+
+.image {
+  flex: 1; /* Ocupa el 50% del ancho disponible */
+  overflow: hidden; /* Oculta el desbordamiento de la imagen */
+  max-width: 50%; /* Establece un ancho máximo para la columna de imagen */
+}
+
+.img {
+  max-width: 100%; /* Establece un ancho máximo para la imagen */
+  max-height: 100%; /* Establece una altura máxima para la imagen */
+  display: block; /* Evita posibles espacios en blanco debajo de la imagen */
+  margin: auto; /* Centra la imagen horizontalmente en su contenedor */
+}
+
+@font-face {
+  font-family: "title";
+  src: url("../../font/drius/drius.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "options";
+  src: url("../../font/bebas_neue/BebasNeue-Regular.ttf") format("truetype");
+}
+
+.info h1 , h3 {
+  font-family: "title";
+  color: brown;
+}
+
+.info p {
+    font-family: "options";
+    color: white;
+}

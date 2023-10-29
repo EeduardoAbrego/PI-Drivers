@@ -1,0 +1,6 @@
+.container {
+    background-image: url("https://cdn-9.motorsport.com/images/mgl/6l9ygbk0/s1200/red-bull-racing-rb18-1.webp");
+    background-position: center; /* Centra la imagen horizontal y verticalmente */
+    background-size: cover; /* Ajusta la imagen al tamaño del contenedor sin distorsión */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+}

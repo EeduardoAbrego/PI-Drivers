@@ -1,0 +1,48 @@
+.container {
+  border: 1px solid black;
+}
+
+.cont1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@font-face {
+  font-family: "title";
+  src: url("../../font/drius/drius.ttf") format("truetype");
+}
+
+.cont1 h1 {
+  font-family: "title";
+  color: brown;
+  font-size: 40px;
+}
+
+.buttonContainer {
+  display: flex; /* Cambia el diseño a un modelo flexible (fila por defecto) */
+  justify-content: space-between; /* Espacio uniforme entre los elementos */
+  align-items: center; /* Alinea verticalmente al centro */
+}
+
+.buttonContainer button {
+  margin: 0 5px; /* Agrega un margen horizontal entre los botones para darles espacio */
+}
+
+.inputContainer {
+  display: flex; /* Establece un diseño flexible (fila por defecto) */
+  align-items: center; /* Alinea verticalmente al centro */
+}
+
+.styleButton {
+  background-color: brown;
+  font-family: "title";
+  cursor: pointer;
+}
+.styleButton::placeholder {
+  color: black;
+}
+
+.cont1 a {
+  text-decoration: none;
+}

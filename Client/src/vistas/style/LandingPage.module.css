@@ -1,26 +1,33 @@
 .image {
-background-image: url(https://images2.alphacoders.com/121/1214052.png );
-background-size: cover;
-background-position: center;
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: -1;
+  background-image: url(https://images2.alphacoders.com/121/1214052.png);
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+@font-face {
+  font-family: "title";
+  src: url("../../font/drius/drius.ttf") format("truetype");
 }
 
 .button {
-    position: absolute;
-    height: 150px;
-    width: 300px;
-    top: 30%;
+  font-family: "title";
+  font-size: 40px;
+  position: absolute;
+  top: 30%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Centra el botón tanto vertical como horizontalmente */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Centra el botón tanto vertical como horizontalmente */
   padding: 1px 3px; /* Ajusta el tamaño del botón según tus preferencias */
-  background-color: #8a8f95b9; /* Cambia el color de fondo del botón */
+
   color: #6a0c0c; /* Cambia el color del texto del botón */
   border: none;
-  margin: 0%;
+
   cursor: pointer;
 }

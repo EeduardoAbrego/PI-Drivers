@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "title";
+  src: url("../../font/drius/drius.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "options";
+  src: url("../../font/bebas_neue/BebasNeue-Regular.ttf") format("truetype");
+}
+.summary {
+  color: brown;
+  font-family: "title";
+  padding: 10px; /* Añade un espacio alrededor del texto del summary */
+  cursor: pointer; /* Cambia el cursor a una mano para indicar que es interactivo */
+  outline: none; /* Elimina el contorno predeterminado al hacer clic en el summary */
+}
+
+.styleButton {
+  background-color: brown;
+  font-family: "title";
+  cursor: pointer;
+}
+
+.styleButton1 {
+  font-size: 20px;
+  background-color: brown;
+  font-family: "options";
+  cursor: pointer;
+}
+
+.p {
+  color: brown;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "title";
+}
