@@ -24,7 +24,7 @@ const postDriver = async (newDriver) => {
 
     return newDriv;
   } catch (error) {
-    return error;
+    throw new Error(error)
   }
 };
 

@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Driver, Team } = require("../db");
+const { Error } = require("sequelize");
 
 const getDrivers = async (name) => {
   try {
@@ -55,7 +56,7 @@ const getDrivers = async (name) => {
     const allDrivers = [...driDb, ...drivers];
     return allDrivers;
   } catch (error) {
-    return error;
+    throw new Error(error) ;
   }
 };
 

@@ -14,7 +14,7 @@ const getDriversId = async (idDriver) => {
     return driver;
     
   } catch (error) {
-    return error;
+    throw new Error(error)
   }
 };
 

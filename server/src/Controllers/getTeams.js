@@ -36,7 +36,7 @@ const getTeams = async () => {
 
     return teamsOrder;
   } catch (error) {
-    return error;
+    throw new Error(error)
   }
 };
 
