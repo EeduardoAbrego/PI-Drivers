@@ -19,7 +19,7 @@ router.get("/drivers", async (req, res) => {
 router.get("/drivers/:idDriver", async (req, res) => {
   try {
     let { idDriver } = req.params;
-    const driver = await getDrivers(idDriver);
+    const driver = await getDriversId(idDriver);
     res.status(200).send(driver);
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -50,7 +50,7 @@ const Form = () => {
 
   const createDriver = async (driver) => {
     try {
-      await axios.post("http://localhost:3001/drivers", driver);
+      await axios.post("https://drivers-pi-backend.onrender.com/drivers", driver);
       alert("usuario creado");
     } catch (error) {
       alert(error.message);
