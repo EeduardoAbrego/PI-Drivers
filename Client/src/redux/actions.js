@@ -13,7 +13,7 @@ export const CLEAR = "CLEAR";
 export const getDrivers = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios("http://localhost:3001/drivers");
+      const { data } = await axios("https://drivers-pi-backend.onrender.com/drivers");
       return dispatch({
         type: GET_DRIVERS,
         payload: data,
@@ -28,7 +28,7 @@ export const getNameDriver = (name) => {
   return async (dispatch) => {
     try {
       const { data } = await axios(
-        `http://localhost:3001/drivers?name=${name}`
+        `https://drivers-pi-backend.onrender.com/drivers?name=${name}`
       );
       if (data.length === 0)
         return alert("No characters with that name were found");
@@ -72,7 +72,7 @@ export const filterDrivers = (value) => {
 export const getAllTeams = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios(`http://localhost:3001/teams`);
+      const { data } = await axios(`https://drivers-pi-backend.onrender.com/teams`);
       console.log(data);
       return dispatch({
         type: GET_ALL_TEAMS,
