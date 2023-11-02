@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   getTeamDriver,
   filterOrder,
   filterDrivers,
   filterOrigin,
-  getAllTeams,
 } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import style from "./style/Main.module.css";
@@ -14,16 +13,9 @@ const Menu = ({ allDrivers, allTeams }) => {
 
   const [team, setTeam] = useState("");
 
-  useEffect(() => {
-    dispatch(getAllTeams());
-  }, [dispatch]);
-
-  const handleChange = (e) => {
-    setTeam(e.target.value);
-  };
-
-  const onSearchTeam = (team) => {
-    dispatch(getTeamDriver(team));
+  const handleTeam = (e) => {
+    const { value } = e.target;
+    dispatch(getTeamDriver(value));
   };
 
   const handleOrder = (e) => {
@@ -31,7 +23,7 @@ const Menu = ({ allDrivers, allTeams }) => {
     dispatch(filterOrder(value));
   };
 
-  const handleFilter = (e) => {
+  const handleDate = (e) => {
     const { value } = e.target;
     dispatch(filterDrivers(value));
   };
@@ -49,47 +41,18 @@ const Menu = ({ allDrivers, allTeams }) => {
       <details>
         <summary className={style.summary}>Filter</summary>
         <div>
-          <select className={style.styleButton1} onChange={handleChange}>
+          <select className={style.styleButton1} onChange={handleTeam}>
             <option selected disabled>
               Teams
             </option>
             {allTeams.map((team) => (
-              <option  key={team} value={team}>
+              <option key={team} value={team}>
                 {team}
               </option>
             ))}
           </select>
-          <button className={style.styleButton1}
-            onClick={() => {
-              onSearchTeam(team);
-            }}
-          >
-            🔍
-          </button>
         </div>
-      </details>
-      <details>
-        <summary className={style.summary}>Sort</summary>
         <div>
-          <div>    
-          <select className={style.styleButton1} onChange={handleOrder}>
-            <option selected disabled>
-              Orden Alfabetico
-            </option>
-            <option value="Ascendente">Ascendente</option>
-            <option value="Desendente">Desendente</option>
-          </select>
-          </div>
-          <div>
-          <select className={style.styleButton1} onChange={handleFilter}>
-            <option selected disabled>
-              Orden Fecha de Nacimiento
-            </option>
-            <option value="Mayor a Menor">Mayor a Menor</option>
-            <option value="Menor a Mayor">Menor a Mayor</option>
-          </select>
-          </div>
-          <div>
           <select className={style.styleButton1} onChange={handleOrigin}>
             <option selected disabled>
               API/DB
@@ -97,12 +60,34 @@ const Menu = ({ allDrivers, allTeams }) => {
             <option value="API">API</option>
             <option value="DB">DB</option>
           </select>
+        </div>
+      </details>
+      <details>
+        <summary className={style.summary}>Sort</summary>
+        <div>
+          <div>
+            <select className={style.styleButton1} onChange={handleOrder}>
+              <option selected disabled>
+                Alphabetical order
+              </option>
+              <option value="Upward">Upward</option>
+              <option value="Falling">Falling</option>
+            </select>
+          </div>
+          <div>
+            <select className={style.styleButton1} onChange={handleDate}>
+              <option selected disabled>
+                Order Date of Birth
+              </option>
+              <option value="Highest to Lowest">Highest to Lowest</option>
+              <option value="Lowest to Highest">Lowest to Highest</option>
+            </select>
           </div>
         </div>
       </details>
-        <div className={style.p} >
-          <p > {`${numAllDrivers} Drivers `} </p>
-        </div>
+      <div className={style.p}>
+        <p> {`${numAllDrivers} Drivers `} </p>
+      </div>
     </div>
   );
 };

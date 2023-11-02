@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllTeams } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 import style from "./style/Form.module.css";
+import { getDrivers } from "../redux/actions";
 
 const Form = () => {
-  const dispatch = useDispatch();
   const allTeams = useSelector((state) => state.allTeams);
+  const dispatch = useDispatch();
 
   const [driverData, setDriverData] = useState({
     forename: "",
@@ -22,10 +22,6 @@ const Form = () => {
     forename: "Required",
     dob: "Required",
   });
-
-  useEffect(() => {
-    dispatch(getAllTeams());
-  }, [dispatch]);
 
   const validations = (value, proper, setErrors, errors) => {
     if (proper === "forename") {
@@ -53,15 +49,20 @@ const Form = () => {
   };
 
   const createDriver = async (driver) => {
-    await axios.post("http://localhost:3001/drivers", driver);
-    alert("usuario creado");
+    try {
+      await axios.post("http://localhost:3001/drivers", driver);
+      alert("usuario creado");
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (errors.forename === "Name Inválido" || errors.dob === "Date Inválida")
-      return alert("nombre o fecha incorrecta ");
+    if (errors.forename === "Name Invalid" || errors.dob === "Date Invalid")
+      return alert("Name or Date Invalid ");
     createDriver(driverData);
+    dispatch(getDrivers());
   };
 
   const handleSelect = (e) => {

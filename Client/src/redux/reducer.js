@@ -2,17 +2,19 @@ import {
   GET_DRIVERS,
   GET_NAME,
   GET_TEAM,
-  ORDER,
-  FILTER,
+  ORDER_NAME,
+  ORDER_DATE,
   GET_ALL_TEAMS,
   ORIGIN,
   RELOAD,
+  GET_ID,
+  CLEAR,
 } from "./actions";
 
 let initialState = {
   allDrivers: [],
   allDriver: [],
-  driversTeam: [],
+  driverDetail: [],
   allTeams: [],
 };
 
@@ -40,9 +42,9 @@ const reducer = (state = initialState, action) => {
       });
       return { ...state, allDrivers: driverFilter };
 
-    case ORDER:
+    case ORDER_NAME:
       const driverOrder = [...state.allDrivers].sort((a, b) => {
-        if (action.payload === "Ascendente") {
+        if (action.payload === "Upward") {
           return a.forename > b.forename ? 1 : -1;
         } else {
           return a.forename < b.forename ? 1 : -1;
@@ -53,9 +55,9 @@ const reducer = (state = initialState, action) => {
         allDrivers: driverOrder,
       };
 
-    case FILTER:
+    case ORDER_DATE:
       const filterDate = [...state.allDrivers].sort((a, b) => {
-        if (action.payload === "Menor a Mayor") {
+        if (action.payload === "Lowest to Highest") {
           return Number(a.dob.split("-")[0]) - Number(b.dob.split("-")[0]);
         } else {
           return Number(b.dob.split("-")[0]) - Number(a.dob.split("-")[0]);
@@ -94,6 +96,21 @@ const reducer = (state = initialState, action) => {
 
     case RELOAD:
       return { ...state, allDrivers: state.allDriver };
+
+    case GET_ID:
+      let driver = {};
+      if (isNaN(action.payload)) {
+        driver = state.allDriver.find((char) => char.Id === action.payload);
+      } else {
+        driver = state.allDriver.find(
+          (char) => char.Id === Number(action.payload)
+        );
+      }
+      return { ...state, driverDetail: driver };
+
+    case CLEAR :
+      
+      return { ...state, driverDetail: action.payload };
 
     default:
       return { ...state };

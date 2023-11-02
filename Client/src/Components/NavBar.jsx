@@ -42,18 +42,18 @@ const NavBar = () => {
           <input
             className={style.styleButton}
             type="search"
-            placeholder="Ingrese un nombre ..."
+            placeholder="Enter a name ..."
             onChange={handleChange}
             value={name}
           />
-          <butto
+          <button
             onClick={() => {
               onSearchName(name);
             }}
             className={style.styleButton}
           >
             Search
-          </butto>
+          </button>
         </div>
 
         <Link to={"/create_driver"}>

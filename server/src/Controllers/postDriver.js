@@ -1,15 +1,15 @@
 const { Driver, Team } = require("../db");
 
-const postDriver = async (req, res) => {
+const postDriver = async (newDriver) => {
   try {
     const { forename, surname, image, nationality, description, dob, teams } =
-      req.body;
+      newDriver;
 
     const teamsDriv = Array.isArray(teams) ? teams : [teams];
 
     const teamsAll = await Team.findAll({ where: { team: teamsDriv } });
 
-    const newDriver = await Driver.create({
+    const newDriv = await Driver.create({
       forename,
       surname,
       image,
@@ -18,13 +18,13 @@ const postDriver = async (req, res) => {
       dob,
     });
 
-    await newDriver.addTeam(teamsAll);
+    await newDriv.addTeam(teamsAll);
 
-    newDriver.teams = teamsAll.map((team) => team.team);
+    newDriv.teams = teamsAll.map((team) => team.team);
 
-    return res.status(201).json(newDriver);
+    return newDriv;
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return error;
   }
 };
 

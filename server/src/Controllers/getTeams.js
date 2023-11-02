@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { Team } = require("../db");
 
-const getTeams = async (req, res) => {
+const getTeams = async () => {
   try {
     const { data } = await axios.get("http://localhost:5000/drivers");
     const teams = data.map((element) => element.teams);
@@ -34,9 +34,9 @@ const getTeams = async (req, res) => {
       await Team.bulkCreate(dbTeam);
     }
 
-    return res.status(200).send(teamsOrder);
+    return teamsOrder;
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return error;
   }
 };
 

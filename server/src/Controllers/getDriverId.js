@@ -1,21 +1,20 @@
 const axios = require("axios");
 const { Driver } = require("../db");
-const getDriversId = async (req, res) => {
+const getDriversId = async (idDriver) => {
   try {
-    let { idDriver } = req.params;
-
     if (isNaN(idDriver)) {
       const driver = await Driver.findByPk(idDriver);
-      return res.status(200).send(driver);
+      return driver
     }
     const { data } = await axios.get(
       `http://localhost:5000/drivers/${idDriver}`
     );
     const { id, name, image, nationality, description, teams } = data;
-    const newelement = { id, name, image, nationality, description, teams };
-    return res.status(200).send(newelement);
+    const driver = { id, name, image, nationality, description, teams };
+    return driver;
+    
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return error;
   }
 };
 

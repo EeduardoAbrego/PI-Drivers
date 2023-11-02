@@ -1,32 +1,44 @@
 import axios from "axios";
-
+export const GET_ID = "GET_ID";
 export const GET_DRIVERS = "GET_DRIVERS";
 export const GET_NAME = "GET_NAME";
 export const GET_TEAM = "GET_TEAM";
-export const ORDER = "ORDER";
-export const FILTER = "FILTER";
+export const ORDER_NAME = " ORDER_NAME";
+export const ORDER_DATE = "ORDER_DATE";
 export const GET_ALL_TEAMS = "GET_ALL_TEAMS";
 export const ORIGIN = "ORIGIN";
 export const RELOAD = "RELOAD";
+export const CLEAR = "CLEAR";
 
 export const getDrivers = () => {
   return async (dispatch) => {
-    const { data } = await axios("http://localhost:3001/drivers");
-    return dispatch({
-      type: GET_DRIVERS,
-      payload: data,
-    });
+    try {
+      const { data } = await axios("http://localhost:3001/drivers");
+      return dispatch({
+        type: GET_DRIVERS,
+        payload: data,
+      });
+    } catch (error) {
+      alert(error);
+    }
   };
 };
 
 export const getNameDriver = (name) => {
   return async (dispatch) => {
-    const { data } = await axios(`http://localhost:3001/drivers?name=${name}`);
-    console.log(data);
-    return dispatch({
-      type: GET_NAME,
-      payload: data,
-    });
+    try {
+      const { data } = await axios(
+        `http://localhost:3001/drivers?name=${name}`
+      );
+      if (data.length === 0)
+        return alert("No characters with that name were found");
+      return dispatch({
+        type: GET_NAME,
+        payload: data,
+      });
+    } catch (error) {
+      alert(error);
+    }
   };
 };
 
@@ -42,7 +54,7 @@ export const getTeamDriver = (team) => {
 export const filterOrder = (value) => {
   return (dispatch) => {
     return dispatch({
-      type: ORDER,
+      type: ORDER_NAME,
       payload: value,
     });
   };
@@ -51,7 +63,7 @@ export const filterOrder = (value) => {
 export const filterDrivers = (value) => {
   return (dispatch) => {
     return dispatch({
-      type: FILTER,
+      type: ORDER_DATE,
       payload: value,
     });
   };
@@ -59,12 +71,16 @@ export const filterDrivers = (value) => {
 
 export const getAllTeams = () => {
   return async (dispatch) => {
-    const { data } = await axios(`http://localhost:3001/teams`);
-    console.log(data);
-    return dispatch({
-      type: GET_ALL_TEAMS,
-      payload: data,
-    });
+    try {
+      const { data } = await axios(`http://localhost:3001/teams`);
+      console.log(data);
+      return dispatch({
+        type: GET_ALL_TEAMS,
+        payload: data,
+      });
+    } catch (error) {
+      alert(error);
+    }
   };
 };
 
@@ -81,6 +97,24 @@ export const reloadHome = () => {
   return (dispatch) => {
     return dispatch({
       type: RELOAD,
+    });
+  };
+};
+
+export const getId = (id) => {
+  return (dispatch) => {
+    return dispatch({
+      type: GET_ID,
+      payload: id,
+    });
+  };
+};
+
+export const clearState = () => {
+  return (dispatch) => {
+    return dispatch({
+      type: CLEAR,
+      payload: [],
     });
   };
 };
