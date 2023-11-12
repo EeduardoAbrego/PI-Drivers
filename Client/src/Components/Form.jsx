@@ -57,9 +57,11 @@ const Form = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event, driverData) => {
     event.preventDefault();
-    if (errors.forename === "Name Invalid" || errors.dob === "Date Invalid" || errors.forename === "Required" || errors.dob === "Required")
+    if (errors.forename === "Name Invalid" ||
+     errors.dob === "Date Invalid" || errors.forename === "Required" ||
+      errors.dob === "Required" ||  driverData.teams.length === 0  )
       return alert("Name or Date Invalid ");
     createDriver(driverData);
     dispatch(getDrivers());
