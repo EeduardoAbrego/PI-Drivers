@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+/*import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
@@ -21,13 +21,13 @@ const store = configureStore({
 
 export const persistor = persistStore(store);
 export default store;
+*/
 
 
 
 
 
-
-/*import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import reducer from "./reducer";
 
@@ -37,6 +37,6 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
 });
 
-export default store;*/
+export default store;
 
 
