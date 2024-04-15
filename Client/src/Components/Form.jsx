@@ -57,7 +57,7 @@ const Form = () => {
     }
   };
 
-  const handleSubmit = (event, driverData) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     if (errors.forename === "Name Invalid" ||
      errors.dob === "Date Invalid" || errors.forename === "Required" ||
