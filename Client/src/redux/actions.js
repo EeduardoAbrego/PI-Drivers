@@ -1,4 +1,5 @@
 import axios from "axios";
+const URL_BASE= "https://pi-drivers-juyt.onrender.com";
 export const GET_ID = "GET_ID";
 export const GET_DRIVERS = "GET_DRIVERS";
 export const GET_NAME = "GET_NAME";
@@ -13,7 +14,7 @@ export const CLEAR = "CLEAR";
 export const getDrivers = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios("https://drivers-pi-backend.onrender.com/drivers");
+      const { data } = await axios( `${URL_BASE}/drivers`);
       return dispatch({
         type: GET_DRIVERS,
         payload: data,
@@ -27,9 +28,9 @@ export const getDrivers = () => {
 export const getNameDriver = (name) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios(
-        `https://drivers-pi-backend.onrender.com/drivers?name=${name}`
-      );
+      const { data } = await axios( `${URL_BASE}/drivers?name=${name}`
+        
+  );
       if (data.length === 0)
         return alert("No characters with that name were found");
       return dispatch({
@@ -72,7 +73,7 @@ export const filterDrivers = (value) => {
 export const getAllTeams = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios(`https://drivers-pi-backend.onrender.com/teams`);
+      const { data } = await axios(`${URL_BASE}/teams`);
       console.log(data);
       return dispatch({
         type: GET_ALL_TEAMS,
