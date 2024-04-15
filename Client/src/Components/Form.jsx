@@ -63,6 +63,7 @@ const Form = () => {
      errors.dob === "Date Invalid" || errors.forename === "Required" ||
       errors.dob === "Required" )
       return alert("Name or Date Invalid ");
+    console.log(driverData)
     createDriver(driverData);
     dispatch(getDrivers());
   };
